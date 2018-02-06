@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/derek-haworth/hangman-cli/issues"
   },
-  "homepage": "https://github.com/derek-haworth/hangman-cli#readme"
+  "homepage": "https://github.com/derek-haworth/hangman-cli#readme",
+  "dependencies": {
+    "inquirer": "^5.1.0"
+  }
 }
