@@ -1,7 +1,7 @@
 var Letter = function(char, guess) {
 	this.char = char;
 	this.guess = guess;
-	this.returnCharacter = function() {
+	this.toString = function() {
 		/* method that returns the underlying character
 		   	if the letter has been guessed, or a placeholder (like an underscore)
 			if the letter has not been guessed
