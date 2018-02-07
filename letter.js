@@ -7,7 +7,7 @@ var Letter = function(char, guess) {
 			if the letter has not been guessed
 		*/
 	};
-	this.checkAndUpdateChar = function(character) {
+	this.guess = function(character) {
 		/* Method that takes a character as an argument and
 			checks it against the underlying character, updating the stored
 			boolean value to true if it was guessed correctly
