@@ -1,8 +1,8 @@
 var Letter = require("./letter.js");
 
-var Word = function() {
+var Word = function(newLetterArr) {
 	// array of `new` Letter objects representing the letters of the underlying word
-	this.newLetters = new Array();
+	this.newLetterArr = newLetterArr;
 	this.wordRepresent = function() {
 		/* A function that returns a string representing the word. 
 		   This should call the function on each letter object (the first function defined in `Letter.js`) 
