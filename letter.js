@@ -1,18 +1,16 @@
-var Letter = function(char, guess) {
+//constructor function that displays "_" or user guessed character based on what the user inputs.
+
+var Letter = function(char) {
 	this.char = char;
-	this.guess = guess;
-	this.toString = function() {
-		/* method that returns the underlying character
-		   	if the letter has been guessed, or a placeholder (like an underscore)
-			if the letter has not been guessed
-		*/
-	};
-	this.guess = function(character) {
-		/* Method that takes a character as an argument and
-			checks it against the underlying character, updating the stored
-			boolean value to true if it was guessed correctly
-		*/
-	};
+	this.guessed = false;
+	this.display = '_';
+	this.checkLetter = function(guess){
+	  if (guess.toLowerCase() === this.char.toLowerCase()){
+	    this.display = this.char;
+	    this.guessed = true;
+	  }
+	  return this.guessed;
+	}
 };
 
 module.exports = Letter;
