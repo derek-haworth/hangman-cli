@@ -1,19 +1,34 @@
 var Letter = require("./letter.js");
 
-var Word = function(newLetterArr) {
-	// array of `new` Letter objects representing the letters of the underlying word
-	this.newLetterArr = newLetterArr;
-	this.wordRepresent = function() {
-		/* A function that returns a string representing the word. 
-		   This should call the function on each letter object (the first function defined in `Letter.js`) 
-		   that displays the character or an underscore and concatenate those together.
-		*/
-	};
-	this.guessAndCheck = function(character) {
-		/* A function that takes a character as an argument and calls the guess function
-		   on each letter object (the second function defined in `Letter.js`)
-		*/
-	};
-};
+var Word = function(value) {
+	this.value = value;
+	this.letters = [];
+	this.found = false;
+	// automatically construct the letters array by parsing currentWord in Letter constructor
+	for (var i = 0; i < this.value.length; i++) {
+		var newLetter = new Letter(this.value[i]);
+		this.letters.push(newLetter);
+	}
+
+}
+
+Word.prototype.checkLetter = function(guess) {
+	var letterFound = false;
+	for (var i = 0; i < this.letters.length; i++) {
+		if (this.letters[i].value === guess) {
+			this.letters[i].show = true;
+			letterFound = true;
+		}
+	}
+	return letterFound;
+}
+
+Word.prototype.renderWord = function() {
+	var guessedWord	= "";
+	for (var i = 0; i < this.letters.length; i++) {
+		guessedWord	+= this.letters[i].printLetter();
+	}
+	console.log("\n" + guessedWord + "\n");
+}
 
 module.exports = Word;
