@@ -29,6 +29,7 @@ var hangGame = {
 
 		// get method from letter.js
 		hangGame.currentWord.renderWord();
+		hangGame.askQuestion();
 	},
 
 	newGame: function() {
@@ -55,7 +56,28 @@ var hangGame = {
 		return;
 	},
 
-	
+	askQuestion: function() {
+		inquirer
+			.prompt([
+				{
+			    type: "input",
+			    message: "Type in a letter and hit 'Enter':",
+			    name: "guess",
+			    validate: function(input) {
+			    	var done = this.async();
+			    	var key = input.toUpperCase();
+				  	if (!hangGame.alphabetArr.includes(key) ) {
+				  		done("Please enter a letter.");
+				  		return;
+				  	}
+				  	done(null, true);
+				  }
+				}
+	    ])
+	    .then(function(answer) {
+	    	console.log(answer);
+	    });
+	}
 }
 
 hangGame.init();
