@@ -27,6 +27,32 @@ var hangGame = {
 
 		// Build Intro
 
+		// get method from letter.js
+		hangGame.currentWord.renderWord();
+	},
+
+	newGame: function() {
+		inquirer
+			.prompt([
+				{
+		      type: "confirm",
+		      message: "Do you want to play again?",
+		      name: "confirm",
+		      default: true
+		    }
+		  ])
+		  .then(function(answer) {
+		   	if (answer.confirm) {
+		   		hangGame.init();
+		   	} else {
+		   		hangGame.endGame();
+		   	}
+		  });
+	},
+
+	endGame: function() {
+		console.log("\nThanks for playing!\n");
+		return;
 	},
 
 	

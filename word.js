@@ -23,6 +23,20 @@ Word.prototype.checkLetter = function(guess) {
 	return letterFound;
 }
 
+Word.prototype.isWordFound = function() {
+	var counter = 0;
+	for (var i = 0; i < this.letters.length; i++) {
+		if (this.letters[i].show === true) {
+			counter++;
+		}
+	}
+	if (counter === this.letters.length) {
+		this.found = true;
+	} else {
+		this.found = false;
+	}
+}
+
 Word.prototype.renderWord = function() {
 	var guessedWord	= "";
 	for (var i = 0; i < this.letters.length; i++) {
