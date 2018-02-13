@@ -12,30 +12,54 @@ var hangGame = {
 	alphabetArr: [],
 	wrongGuess: [],
 
-	// Creates alphabet array and pushes into empty array defined in hangGame object
-	alphabet: function () {
-		for (var i = 65; i <= 90; i++) {
-			hangGame.alphabetArr[hangGame.alphabetArr.length] = String.fromCharCode(i);
-		}
-	},
-
 	init: function() {
 		var randomWord = Math.floor(Math.random() * this.wordArr.length);
 		var chosenWord = this.wordArr[randomWord].toUpperCase();
 		this.lives = 10;
 		this.currentWord = new Word(chosenWord);
 
-		// Build Intro
+		// Build Intro Here with console.logs for Jurassic Park Themed Game
+		console.log("\nWelcome to...");
+		setTimeout(function() {
+        	    console.log("\nJurassic Park!");
+        	    console.log("\nHangman!");
+			console.log("                  ,");
+			console.log("               ,  ;:._.-`''.");
+			console.log("             ;.;'.;`      _ `.");
+			console.log("              ',;`       ( \ ,`-.  ");
+			console.log("           `:.`,         (_/ ;\  `-.");
+			console.log("            ';:              / `.   `-._");
+			console.log("          `;.;'              `-,/ .   `-.");
+			console.log("          ';;'              _    `^`     `.");
+			console.log("         ';;            ,'-' `--._        ;");
+			console.log("':      `;;        ,;     `.    ':`,,.__,,_\`");
+			console.log(" `;`:;`;:`       ,;  '.    ;,      ';';':';");
+			console.log("              .,; '    '-._ `':.;    ");
+			console.log("            .:; `          '._ `';;,");
+			console.log("          ;:` `    :'`'       ',__.)");
+			console.log("        `;:;:.,...;'`'");
+			console.log("      ';. '`'::'`''  .'`'");
+			console.log("    ,'   `';;:,..::;`'`'");
+			console.log(", .;`      `'::''`");
+			console.log(",`;`.");
+			console.log("\n\nHit any key when you are ready.\n\n");
 
-		// get method from letter.js
-		hangGame.currentWord.renderWord();
-		//the magic method that prompts to Type in a letter
-		this.guessAndCheck();
+			// get method from letter.js
+			hangGame.currentWord.renderWord();
+			//the magic method that prompts player to Type in a letter
+			hangGame.guessAndCheck();
+		}, 2000);
+	},
+
+	// Creates alphabet array and pushes into empty array defined in hangGame object
+	alphabet: function () {
+		for (var i = 65; i <= 90; i++) {
+			this.alphabetArr[this.alphabetArr.length] = String.fromCharCode(i);
+		}
 	},
 
 	newGame: function() {
-		inquirer
-		.prompt([
+		inquirer.prompt([
 			{
 		    	type: "confirm",
 		    	message: "Do you want to play again?",
@@ -59,8 +83,7 @@ var hangGame = {
 	},
 
 	guessAndCheck: function() {
-		inquirer
-		.prompt([
+		inquirer.prompt([
 			{
 		    	type: "input",
 		    	message: "Type in a letter and hit 'Enter':",
@@ -99,11 +122,11 @@ var hangGame = {
 	    		}	    		
 	    	} else {
 
-	    		console.log("Clever girl!");
 	    		hangGame.currentWord.isWordFound();
 
 	    		if (hangGame.currentWord.found) {
-	    			console.log("\nYou won!\n");
+	    			console.log("Clever girl!");
+	    			console.log("You won!\n");
 	    			hangGame.newGame();
 	    		} else {
 	    			hangGame.guessAndCheck();
@@ -115,4 +138,5 @@ var hangGame = {
 
 // create the letters for the alphabet
 hangGame.alphabet();
+// Initialize the Game
 hangGame.init();
