@@ -6,7 +6,8 @@ var inquirer = require("inquirer");
 var colors = require('colors'); 
 
 var hangGame = {
-	wordArr: ["test", "hello", "derek", "world"],
+	// TODO: Pull words using Fs(read) from txt file instead of words in js file
+	wordArr: ["Raptor", "Dinosaur", "fossil", "amber", "mosquito", "Spielberg", "Jurassic Park", "Theme Park", "Hammond", "Dr Grant", "World", "Tyrannosaurus", "Dilophosaurus", "Michael Crichton", "Isla Nublar"],
 	lives: 0,
 	currentWord: "",
 	alphabetArr: [],
@@ -19,36 +20,36 @@ var hangGame = {
 		this.currentWord = new Word(chosenWord);
 
 		// Build Intro Here with console.logs for Jurassic Park Themed Game
-		console.log("\nWelcome to...");
+		console.log("   \nWelcome to...".red.bold);
+		// Set a delay for dramatic effect
 		setTimeout(function() {
-        	    console.log("\nJurassic Park!");
-        	    console.log("\nHangman!");
-			console.log("                  ,");
-			console.log("               ,  ;:._.-`''.");
-			console.log("             ;.;'.;`      _ `.");
-			console.log("              ',;`       ( \ ,`-.  ");
-			console.log("           `:.`,         (_/ ;\  `-.");
-			console.log("            ';:              / `.   `-._");
-			console.log("          `;.;'              `-,/ .   `-.");
-			console.log("          ';;'              _    `^`     `.");
-			console.log("         ';;            ,'-' `--._        ;");
-			console.log("':      `;;        ,;     `.    ':`,,.__,,_\`");
-			console.log(" `;`:;`;:`       ,;  '.    ;,      ';';':';");
-			console.log("              .,; '    '-._ `':.;    ");
-			console.log("            .:; `          '._ `';;,");
-			console.log("          ;:` `    :'`'       ',__.)");
-			console.log("        `;:;:.,...;'`'");
-			console.log("      ';. '`'::'`''  .'`'");
-			console.log("    ,'   `';;:,..::;`'`'");
-			console.log(", .;`      `'::''`");
-			console.log(",`;`.");
-			console.log("\n\nHit any key when you are ready.\n\n");
+        	console.log("   \nJurassic Park!".red.bold);
+			console.log("                  ,".yellow);
+			console.log("               ,  ;:._.-`''.".yellow);
+			console.log("             ;.;'.;`      _ `.".yellow);
+			console.log("              ',;`       ( \ ,`-.  ".yellow);
+			console.log("           `:.`,         (_/ ;\  `-.".yellow);
+			console.log("            ';:              / `.   `-._".yellow);
+			console.log("          `;.;'              `-,/ .   `-.".yellow);
+			console.log("          ';;'              _    `^`     `.".yellow);
+			console.log("         ';;            ,'-' `--._        ;".yellow);
+			console.log("':      `;;        ,;     `.    ':`,,.__,,_\`".yellow);
+			console.log(" `;`:;`;:`       ,;  '.    ;,      ';';':';".yellow);
+			console.log("              .,; '    '-._ `':.;    ".yellow);
+			console.log("            .:; `          '._ `';;,".yellow);
+			console.log("          ;:` `    :'`'       ',__.)".yellow);
+			console.log("        `;:;:.,...;'`'".yellow);
+			console.log("      ';. '`'::'`''  .'`'".yellow);
+			console.log("    ,'   `';;:,..::;`'`'".yellow);
+			console.log(", .;`      `'::''`".yellow);
+			console.log(",`;`.".yellow);
+			console.log("   \n\nHit any key when you are ready.\n\n");
 
 			// get method from letter.js
 			hangGame.currentWord.renderWord();
 			//the magic method that prompts player to Type in a letter
 			hangGame.guessAndCheck();
-		}, 2000);
+		}, 1000);
 	},
 
 	// Creates alphabet array and pushes into empty array defined in hangGame object
@@ -113,11 +114,16 @@ var hangGame = {
 	    		hangGame.lives--;
 
 	    		if (hangGame.lives === 0) {
-	    			console.log("\nSorry, the answer was '" + hangGame.currentWord.value + "'\n");
+	    			console.log("\n");
+	    			console.log("------------------------------------".bgRed);
+	    			console.log("Sorry, the answer was '" + hangGame.currentWord.value + "'");
+	    			console.log("------------------------------------".bgRed);
+	    			console.log("\n");
 	    			hangGame.newGame();
 	    		} else {
-	    			console.log("Try again!");
+	    			console.log("Try again!".yellow);
 	    			console.log("Status report: lives = " + hangGame.lives);
+	    			console.log("\n");
 	    			hangGame.guessAndCheck();
 	    		}	    		
 	    	} else {
@@ -125,8 +131,12 @@ var hangGame = {
 	    		hangGame.currentWord.isWordFound();
 
 	    		if (hangGame.currentWord.found) {
+	    			console.log("\n");
+	    			console.log("------------------------------------".bgGreen);
 	    			console.log("Clever girl!");
-	    			console.log("You won!\n");
+	    			console.log("You Won!");
+	    			console.log("------------------------------------".bgGreen);
+	    			console.log("\n");
 	    			hangGame.newGame();
 	    		} else {
 	    			hangGame.guessAndCheck();
