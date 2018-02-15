@@ -27,7 +27,7 @@ var hangGame = {
 			console.log("                  ,".yellow);
 			console.log("               ,  ;:._.-`''.".yellow);
 			console.log("             ;.;'.;`      _ `.".yellow);
-			console.log("              ',;`       ( \ ,`-.  ".yellow);
+			console.log("              ',;`       ( )\ ,`-.  ".yellow);
 			console.log("           `:.`,         (_/ ;\  `-.".yellow);
 			console.log("            ';:              / `.   `-._".yellow);
 			console.log("          `;.;'              `-,/ .   `-.".yellow);
